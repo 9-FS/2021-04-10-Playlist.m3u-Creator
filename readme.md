@@ -21,12 +21,4 @@ By default files with the following file extension are recognised as music files
 
 You may set `LIBRARY_PATH` if you you want any path prefixes in the playlist file.
 
-<div class="img_centre_30">
-    <a href="https://www.paypal.com/paypalme/KooFelixSangmo">
-        <img alt="Error: Could not load image source."
-        src="https://i.pinimg.com/originals/60/fd/e8/60fde811b6be57094e0abc69d9c2622a.jpg"/>
-    </a>
-    <p class=img_caption>Click to buy me a beer!</p>
-</div>
-
 </div>

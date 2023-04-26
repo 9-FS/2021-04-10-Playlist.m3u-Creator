@@ -2,8 +2,8 @@
 Topic: "Playlist.m3u Creator"
 Author: "구FS"
 ---
-<link href="./src/KFS/md_style.css" rel="stylesheet"></link>
-<div id="global">
+<link href="./doc_templates/md_style.css" rel="stylesheet"></link>
+<body>
 
 # <p style="text-align: center">`Playlist.m3u` Creator</p>
 <br>
@@ -21,4 +21,4 @@ By default files with the following file extension are recognised as music files
 
 You may set `LIBRARY_PATH` if you you want any path prefixes in the playlist file.
 
-</div>
+</body>

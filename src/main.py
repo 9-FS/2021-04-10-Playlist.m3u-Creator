@@ -12,11 +12,11 @@ def main() -> None:
     playlist_content: str                   #playlist current
     playlist_names: list
     
-    logging.info(f"Loading direct child directory names excluding \"{DEST_PATH}\" and \"./Log/\"...")
-    playlist_names=[folder.name
-                      for folder in os.scandir(".")
-                      if folder.is_dir()==True and folder.name!="m3u" and folder.name!="Log"]   #get all playlist folders, exclude destination folder if exists already, exclude Log folder
-    logging.info(f"\rLoaded direct child directory names excluding \"{DEST_PATH}\" and \"./Log/\".")
+    logging.info(f"Loading direct child directory names excluding \"{DEST_PATH}\" and \"./log/\"...")
+    playlist_names=[entry.name
+                    for entry in os.scandir(".")
+                    if entry.is_dir()==True and entry.name!="m3u" and entry.name!="log"]    #get all playlist folders, exclude destination folder if exists already, exclude Log folder
+    logging.info(f"\rLoaded direct child directory names excluding \"{DEST_PATH}\" and \"./log/\".")
     logging.debug(playlist_names)
     logging.debug(f"Creating destination directory \"{DEST_PATH}\"...")
     os.makedirs(f"{DEST_PATH}", exist_ok=True)                                                  #create destination folder

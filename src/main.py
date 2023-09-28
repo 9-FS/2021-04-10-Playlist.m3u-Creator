@@ -13,9 +13,9 @@ def main() -> None:
     playlist_names: list
     
     logging.info(f"Loading direct child directory names excluding \"{DEST_PATH}\" and \"./log/\"...")
-    playlist_names=[entry.name
-                    for entry in os.scandir(".")
-                    if entry.is_dir()==True and entry.name!="m3u" and entry.name!="log"]    # get all playlist folders, exclude destination folder if exists already, exclude Log folder
+    playlist_names=[entry
+                    for entry in os.listdir(".")
+                    if os.path.isdir(entry)==True and entry!="m3u" and entry!="log"]    # get all playlist folders, exclude destination folder if exists already, exclude Log folder
     logging.info(f"\rLoaded direct child directory names excluding \"{DEST_PATH}\" and \"./log/\".")
     logging.debug(playlist_names)
     logging.debug(f"Creating destination directory \"{DEST_PATH}\"...")
@@ -23,11 +23,11 @@ def main() -> None:
     logging.debug(f"\rCreated destination directory \"{DEST_PATH}\".")
     
     logging.info("Creating playlist files...")
-    for playlist_name in playlist_names:                                        # every playlist folder
+    for playlist_name in playlist_names:                                # every playlist folder
         logging.info(f"Loading music files from \"{playlist_name}/\"...")
-        playlist_content="\n".join([f"{os.path.join(LIBRARY_PATH, song.name)}"  # get every song in playlist folder, must be file and have music file extension, collapse list to string
-                                    for song in os.scandir(f"./{playlist_name}")
-                                    if song.is_file()==True and os.path.splitext(song.name)[1] in MUSIC_FILE_EXT])
+        playlist_content="\n".join([os.path.join(LIBRARY_PATH, song)    # get every song in playlist folder, must be file and have music file extension, collapse list to string
+                                    for song in os.listdir(f"./{playlist_name}")
+                                    if os.path.isfile(song)==True and os.path.splitext(song)[1] in MUSIC_FILE_EXT])
         logging.info(f"Loaded music files from \"{playlist_name}/\".")
         logging.debug(playlist_content)
         

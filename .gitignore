@@ -8,4 +8,5 @@
 doc_templates/
 log/
 
+Dockerfile
 tests/test.py

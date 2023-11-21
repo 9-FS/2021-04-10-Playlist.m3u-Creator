@@ -5,7 +5,7 @@ import os
 
 
 @KFSlog.timeit
-def main() -> None:
+def main(DEBUG: bool) -> None:
     DEST_PATH: str="./m3u/"                 # playlist file destination folder
     LIBRARY_PATH: str="C:\\Users\\Felix\\Dropbox\\Music\\Library\\"
     MUSIC_FILE_EXT=(".m4a", ".mp3", ".wav") # music file extensions, recognise these files as music

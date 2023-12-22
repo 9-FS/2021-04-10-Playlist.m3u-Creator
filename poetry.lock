@@ -31,17 +31,17 @@ files = [
 
 [[package]]
 name = "hypothesis"
-version = "6.88.3"
+version = "6.92.1"
 description = "A library for property-based testing"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "hypothesis-6.88.3-py3-none-any.whl", hash = "sha256:781ce6fd35e11ca77ad132a20cebe66fd215f56678f8efd6b87013b14500151b"},
-    {file = "hypothesis-6.88.3.tar.gz", hash = "sha256:5cfda253e34726c98ab04b9595fca15677ee9f4f6055146aea25a6278d71f6f1"},
+    {file = "hypothesis-6.92.1-py3-none-any.whl", hash = "sha256:3cba76a7389bd7245c350fcf7234663314dc81a5be0bbef72a07d8c249bfc210"},
+    {file = "hypothesis-6.92.1.tar.gz", hash = "sha256:fa755ded526e50b7e2f642cdc5d64519f88d4e4ee71d9d29ec3eb2f2fddf1274"},
 ]
 
 [package.dependencies]
-attrs = ">=19.2.0"
+attrs = ">=22.2.0"
 sortedcontainers = ">=2.1.0,<3.0.0"
 
 [package.extras]
@@ -70,6 +70,20 @@ files = [
     {file = "iniconfig-2.0.0-py3-none-any.whl", hash = "sha256:b6a85871a79d2e3b22d2d1b94ac2824226a63c6b741c88f7ae975f18b6778374"},
     {file = "iniconfig-2.0.0.tar.gz", hash = "sha256:2d91e135bf72d31a410b17c16da610a82cb55f6b0477d1a902134b24a455b8b3"},
 ]
+
+[[package]]
+name = "kfsconfig"
+version = "1.1.0"
+description = ""
+optional = false
+python-versions = ">=3.11.0,<4.0.0"
+files = [
+    {file = "kfsconfig-1.1.0-py3-none-any.whl", hash = "sha256:e6f80028db4346cbf2e8303d8f8f6276f83f437c4702fd4f723292272023027b"},
+    {file = "kfsconfig-1.1.0.tar.gz", hash = "sha256:f4db6a35813b81e84bcf56f1de42d6db111542aa0ee79caa6e54ccff9e825234"},
+]
+
+[package.dependencies]
+KFSlog = ">=1.0.0,<2.0.0"
 
 [[package]]
 name = "kfsfstr"
@@ -173,4 +187,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11.0"
-content-hash = "83e03c077b875550ee473062aa94de7ba66a524c65cf7ba932a149c02da92dce"
+content-hash = "2069d6a351a426f4eaf9cd8a9428d351f8fec330c870198105c7a37157e7d517"

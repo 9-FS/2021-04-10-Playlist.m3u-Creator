@@ -8,14 +8,14 @@ import os
 
 @KFSlog.timeit
 def main(DEBUG: bool) -> None:
-    MUSIC_FILE_EXT=(".m4a", ".mp3", ".wav")         # music file extensions, recognise these files as music
     playlist_content: str                           # playlist current
-    playlist_names: list
+    playlist_names: list                            # playlist names
     settings: dict[str, str]                        # settings
     SETTINGS_DEFAULT: str=json.dumps({              # settings default
         "dest_path": "./m3u/",                      # playlist file destination folder
         "exclude_paths": ["./config/", "./log/"],   # don't create playlist files from these paths
         "library_path": "",                         # library path absolute to prepend to every song name in playlist file
+        "music_file_ext": [".m4a", ".mp3", ".wav"], # music file extensions, recognise these files as music
     }, indent=4)
 
 
@@ -42,7 +42,7 @@ def main(DEBUG: bool) -> None:
         logging.info(f"Loading music files from \"{playlist_name}/\"...")
         playlist_content="\n".join([os.path.join(settings["library_path"], song)    # get every song in playlist folder, must be file and have music file extension, collapse list to string
                                     for song in os.listdir(f"./{playlist_name}/")
-                                    if os.path.isfile(f"./{playlist_name}/{song}")==True and os.path.splitext(song)[1] in MUSIC_FILE_EXT])
+                                    if os.path.isfile(f"./{playlist_name}/{song}")==True and os.path.splitext(song)[1] in settings["music_file_ext"]])
         logging.info(f"Loaded music files from \"{playlist_name}/\".")
         logging.debug(playlist_content)
         

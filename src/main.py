@@ -8,13 +8,14 @@ import os
 
 @KFSlog.timeit
 def main(DEBUG: bool) -> None:
-    MUSIC_FILE_EXT=(".m4a", ".mp3", ".wav") # music file extensions, recognise these files as music
-    playlist_content: str                   # playlist current
+    MUSIC_FILE_EXT=(".m4a", ".mp3", ".wav")         # music file extensions, recognise these files as music
+    playlist_content: str                           # playlist current
     playlist_names: list
-    settings: dict[str, str]                # settings
-    SETTINGS_DEFAULT: str=json.dumps({      # settings default
-        "dest_path": "./m3u/",              # playlist file destination folder
-        "library_path": "",                 # library path absolute to prepend to every song name in playlist file
+    settings: dict[str, str]                        # settings
+    SETTINGS_DEFAULT: str=json.dumps({              # settings default
+        "dest_path": "./m3u/",                      # playlist file destination folder
+        "exclude_paths": ["./config/", "./log/"],   # don't create playlist files from these paths
+        "library_path": "",                         # library path absolute to prepend to every song name in playlist file
     }, indent=4)
 
 
@@ -24,14 +25,16 @@ def main(DEBUG: bool) -> None:
         return
     
     
-    logging.info(f"Loading direct child directory names excluding \"{settings['dest_path']}\" and \"./log/\"...")
-    playlist_names=[entry
+    logging.info(f"Loading direct child directory names excluding \"{settings['dest_path']}\" and \"{settings['exclude_paths']}\"...")
+    playlist_names=[entry                                   # get all playlist directory names, exclude destination directory and excluded directories
                     for entry in os.listdir(".")
-                    if os.path.isdir(entry)==True and entry!=settings["dest_path"].lstrip(".").strip("/") and entry!="log"] # get all playlist folders, exclude destination folder if exists already, exclude log folder
-    logging.info(f"\rLoaded direct child directory names excluding \"{settings['dest_path']}\" and \"./log/\".")
+                    if     os.path.isdir(entry)==True
+                       and entry!=settings["dest_path"].lstrip(".").strip("/")
+                       and entry not in [exclude_path.lstrip(".").strip("/") for exclude_path in settings["exclude_paths"]]]
+    logging.info(f"\rLoaded direct child directory names excluding \"{settings['dest_path']}\" and \"{settings['exclude_paths']}\".")
     logging.debug(playlist_names)
     logging.debug(f"Creating destination directory \"{settings['dest_path']}\"...")
-    os.makedirs(f"{settings['dest_path']}", exist_ok=True)                                                                  # create destination folder
+    os.makedirs(f"{settings['dest_path']}", exist_ok=True)  # create destination folder
     logging.debug(f"\rCreated destination directory \"{settings['dest_path']}\".")
     
     logging.info("Creating playlist files...")          
